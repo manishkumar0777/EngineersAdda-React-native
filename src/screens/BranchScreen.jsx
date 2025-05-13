@@ -1,30 +1,44 @@
 import { View, Text , TextInput , ScrollView } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { useNavigation } from '@react-navigation/native'
-import branches from '../constants/branches'
 import BranchCard from '../components/ui/BranchCard'
+import { getBranches } from '../services/requests/branch'
 
 const BranchScreen = () => {
 
   const navigation = useNavigation();
 
   //state
+  const [allBranches, setAllBranches] = useState([]);
   const [search , setSearch] = useState('');
-  const [fileteredBranches, setFilteredBranches] = useState(branches);
+  const [fileteredBranches, setFilteredBranches] = useState([]);
 
+
+
+  //fetch branche s
+  useEffect(() => {
+    getBranches()
+      .then((res) => {
+        setFilteredBranches(res);
+        setAllBranches(res);
+      })
+      .catch((err) => console.log('Fetch Error :', err))
+  }, [])
 
   //seach function
   const searchBranch = (text) => {
     setSearch(text);
 
-    const filtered = branches.filter((branch) => (
+    const filtered = allBranches.filter((branch) => (
       branch.title.toLowerCase().includes(text.toLowerCase()) ||
       branch.code.toLowerCase().includes(text.toLowerCase())
     ))
 
     setFilteredBranches(filtered)
   }
+
+  //navigate with branch code and branch name
 
   return (
     <View className='flex-1 w-full justify-center bg-white p-4'>
@@ -47,6 +61,7 @@ const BranchScreen = () => {
               description={branch.description}
               logo={branch.iconName}
               coverImage={branch.coverImage}
+              code={branch.code}
             />
           ))}
         </ScrollView>

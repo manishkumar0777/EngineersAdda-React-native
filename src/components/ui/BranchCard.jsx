@@ -1,15 +1,26 @@
 import { View, Text, TouchableOpacity, ImageBackground } from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { useNavigation } from '@react-navigation/native';
 
 const BranchCard = ({
-  onPress,
+  code,
   title,
   description,
   logo,
   visit = 'Explore',
   coverImage,
 }) => {
+
+  const navigation = useNavigation();
+
+  const navigateToSemester = () => {
+    navigation.navigate('SemesterScreen', {
+      branchCode : code,
+      branchName : title,
+    })
+  }
+
   return (
     <ImageBackground
       source={{ uri: coverImage }}
@@ -34,7 +45,7 @@ const BranchCard = ({
 
         <TouchableOpacity
           className="flex-row justify-center items-center bg-gray-50 w-full h-20 rounded-xl mb-2 border border-blue-950"
-          onPress={onPress}
+          onPress={navigateToSemester}
         >
           <Text className="text-blue-950 text-2xl font-semibold mx-2">{visit}</Text>
           <Icon name="arrow-forward" size={24} className='text-blue-950' />
