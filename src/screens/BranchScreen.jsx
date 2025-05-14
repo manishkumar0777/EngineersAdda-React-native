@@ -1,4 +1,4 @@
-import { View, Text , TextInput , ScrollView } from 'react-native'
+import { View, Text , TextInput , ScrollView, ActivityIndicator } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { useNavigation } from '@react-navigation/native'
@@ -10,18 +10,20 @@ const BranchScreen = () => {
   const navigation = useNavigation();
 
   //state
+  const [loading, setLoading] = useState(false);
   const [allBranches, setAllBranches] = useState([]);
   const [search , setSearch] = useState('');
   const [fileteredBranches, setFilteredBranches] = useState([]);
 
 
-
   //fetch branche s
   useEffect(() => {
+    setLoading(true);
     getBranches()
       .then((res) => {
         setFilteredBranches(res);
         setAllBranches(res);
+        setLoading(false);
       })
       .catch((err) => console.log('Fetch Error :', err))
   }, [])
@@ -38,7 +40,6 @@ const BranchScreen = () => {
     setFilteredBranches(filtered)
   }
 
-  //navigate with branch code and branch name
 
   return (
     <View className='flex-1 w-full justify-center bg-white p-4'>
@@ -53,7 +54,13 @@ const BranchScreen = () => {
         />
       </View>
       <View className='flex-1 flex-col w-full h-[90%]'>
-        <ScrollView className='w-full h-full'>
+
+      {loading ?
+       <View className='flex-1 w-full items-center justify-center'>
+        <ActivityIndicator size={50} color='blue'/>
+       </View> 
+       : 
+       <ScrollView className='w-full h-full'>
           {fileteredBranches.map((branch) => (
             <BranchCard 
               key={branch.code}
@@ -64,7 +71,8 @@ const BranchScreen = () => {
               code={branch.code}
             />
           ))}
-        </ScrollView>
+        </ScrollView> }
+        
       </View>
     </View>
   )
