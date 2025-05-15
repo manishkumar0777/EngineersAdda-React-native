@@ -6,6 +6,7 @@ import HomeScreen from '../screens/HomeScreen';
 import BranchScreen from '../screens/BranchScreen';
 import SemesterScreen from '../screens/SemesterScreen';
 import SubjectScreen from '../screens/SubjectScreen';
+import SyllabusScreen from '../screens/SyllabusScreen';
 
 const Stack = createNativeStackNavigator();
 const Navigation = () => {
@@ -16,6 +17,7 @@ const Navigation = () => {
             <Stack.Screen name='BranchScreen' component={BranchScreen} />
             <Stack.Screen name='SemesterScreen' component={SemesterScreen}/>
             <Stack.Screen name='SubjectScreen' component={SubjectScreen} />
+            <Stack.Screen name='SyllabusScreen' component={SyllabusScreen}/>
         </Stack.Navigator>
     </NavigationContainer>
   )
