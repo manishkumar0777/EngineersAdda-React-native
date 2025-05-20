@@ -10,26 +10,22 @@ const Cards = ({
     visit='Explore',
 }) => {
   return (
-    <View className='flex-1 flex-col bg-bray-300 w-full max-h-80 rounded-xl border border-gray-800 p-4 mb-8'>
-      <View className='flex-row items-center my-2'>
+    <TouchableOpacity
+     onPress={onPress} 
+     className='flex-1 flex-col bg-bray-300 w-full max-h-40 rounded-xl border border-gray-800 p-4 mb-6'
+     >
+      <View className='flex-row items-center my-1'>
         <View className="mr-3">
-          <Icon name={logo} size={50} color="#1e3a8a" />
+          <Icon name={logo} size={40} color="#1e3a8a" />
         </View>
         <View style={{ flex: 1 }}>
-          <Text className='text-3xl font-bold flex-wrap'>
+          <Text className='text-2xl font-bold flex-wrap' numberOfLines={2} ellipsizeMode='tail'>
             {title}
           </Text>
         </View>
       </View>
-        <Text className='text-2xl text-blue-900 mx-4 my-2'>{description}</Text>
-      <TouchableOpacity 
-        className='flex-1 flex-row justify-center items-center my-2 bg-blue-950 w-full h-20 rounded-xl absolute bottom-2 left-4 right-4'
-        onPress={onPress}
-    >
-        <Text className='text-white text-2xl font-semibold mx-2'>{visit}</Text>
-        <Icon name='arrow-forward' size={24} color="#fff" className='mx-3' />
-      </TouchableOpacity>
-    </View>
+        <Text className='text-xl text-blue-900 mx-4 my-1' numberOfLines={2} ellipsizeMode='tail'>{description}</Text>
+    </TouchableOpacity>
   )
 }
 

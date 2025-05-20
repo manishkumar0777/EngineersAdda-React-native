@@ -43,11 +43,11 @@ const BranchScreen = () => {
 
   return (
     <View className='flex-1 w-full justify-center bg-white p-4'>
-      <View className='flex-row w-full h-[8%] items-center justify-evenly border border-blue-900 rounded-xl p-1 mb-4'>
+      <View className='flex-row w-full h-16 items-center justify-evenly border border-blue-900 rounded-xl p-1 mb-4'>
         <Icon name='search' size={28} className='text-blue-950 mx-4 ' />
         <TextInput 
           name='search'
-          placeholder='EE or Electrical Eng..'
+          placeholder='CSE or Computer Sc...'
           className='flex-1 w-full mx-2 text-gray-600 text-xl'
           value={search}
           onChangeText={searchBranch}

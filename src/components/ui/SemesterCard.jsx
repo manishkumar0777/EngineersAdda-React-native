@@ -20,7 +20,7 @@ const SemesterCard = ({
 
   return (
     <TouchableOpacity 
-      className='flex-1 items-center justify-center w-full h-40 bg-gray-50 elevation-md rounded-xl mb-2 mx-2 p-2 border-2 border-blue-950'
+      className='flex-1 items-center justify-center w-full h-20 bg-gray-50 elevation-md rounded-xl mb-2 mx-2 p-2 border-2 border-blue-950'
       onPress={navigateToSubject}
     >
       <Text className='text-3xl text-blue-950 text-center font-bold'>{semesterNumber}</Text>

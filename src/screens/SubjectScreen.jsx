@@ -33,10 +33,12 @@ const SubjectScreen = () => {
         </View>
          : 
         <ScrollView className='h-full w-full'>
-          {subjects.map((subject) => (
+          {subjects.map((subject, index) => (
             <SubjectCard
-              key={subject.code}
+              key={index}
               subjectName = {subject.name}
+              subjectCode = {subject.code}
+              subject= {subject}
             />
           ))}
         </ScrollView>
